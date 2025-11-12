@@ -1,26 +1,42 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Base styles: set font families */
+@layer base {
+  body {
+    @apply text-gray-800;
+    font-family: 'Exo 2', sans-serif; /* Main font */
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif; /* Secondary font */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Utilities for colors and background images */
+@layer utilities {
+  .bg-custom-blue {
+    background-color: #54abde;
+  }
+
+  .text-custom-blue {
+    color: #54abde;
+  }
+
+  .hover\:bg-custom-blue:hover {
+    background-color: #1482c2;
+  }
+
+  .hover\:text-custom-blue:hover {
+    color: #54abde;
+  }
+
+  .bg-receipts {
+    background-image: url('/receipts-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
