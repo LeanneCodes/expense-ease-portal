@@ -133,7 +133,7 @@ export default function Home() {
     <div className="min-h-screen justify-center overflow-hidden bg-receipts flex flex-col items-center p-6">
       {/* Header */}
       <header className="w-full max-w-6xl text-center mb-6">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-1 font-exo">
+        <h1 className="text-4xl md:text-7xl font-bold text-white mb-1 font-exo">
           ExpenseEase
         </h1>
         <p className="text-gray-800 font-montserrat">Drag & drop receipts or select files to upload</p>
