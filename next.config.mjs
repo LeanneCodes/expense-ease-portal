@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // enables static HTML export
+  /* config options here */
 };
 
 export default nextConfig;
