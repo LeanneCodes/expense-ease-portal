@@ -1,42 +1,42 @@
 ExpenseEase: A Receipt Digitiser Web App
-=========================
+========================================
 
 Overview
 --------
 
-The ExpenseEase is a cloud-based application that allows users to upload receipts and receive a digitised version via email. The application combines a user-friendly front-end interface built with Next.js with powerful AWS services for storage, text extraction, and email delivery. This project streamlines the process of converting physical receipts into digital records, making expense tracking easier and more efficient for users.
+ExpenseEase is a cloud-based application that allows users to submit receipts along with their email address for digitisation. Users enter their email, upload one or more receipts (via drag-and-drop or file selection), and submit the form.
 
-Users simply enter their email, upload one or more receipts (via drag-and-drop or file selection), and submit the form. Once submitted, the receipts are processed and sent back as a structured, formatted email.
+**Important note:** Due to Amazon SES sandbox restrictions, emails are currently sent only to a verified admin email address. The submitted receipts include the user’s email in the metadata, so the admin receives a copy of the receipt along with the user’s email. In a production environment with a verified sending domain and SES production access, the system would be able to deliver digitised receipts directly to any user-provided email.
+
+This setup allows the project to demonstrate the integration between a Next.js front end and AWS services for file storage, text extraction, and email formatting, while maintaining safe testing practices.
 
 Features
 --------
 
-*   **User-friendly interface:** Built with Next.js for smooth interactions and responsive design.
+*   **User input and file upload:** Users can provide their email and submit receipts via drag-and-drop or file selection.
     
 *   **Email validation and file upload requirement:** The "Submit" button is enabled only if a valid email and at least one file are provided.
-    
-*   **Flexible file upload:** Supports both drag-and-drop and click-to-upload functionality.
     
 *   **Cloud storage:** Receipts are uploaded to an AWS S3 bucket for storage and processing.
     
 *   **Automatic text extraction:** AWS Textract extracts relevant data from uploaded receipts.
     
-*   **Formatted email delivery:** AWS Lambda formats extracted data and sends it to the user's email via Amazon SES.
+*   **Formatted email delivery:** AWS Lambda formats extracted data and sends it to a verified admin email via Amazon SES, including the user’s email in the metadata.
     
-*   **Front-end usability:** Designed for everyday users to digitise receipts without backend knowledge.
+*   **Front-end usability:** Designed to demonstrate cloud integration without requiring backend knowledge.
     
 
 Screenshots
-------------------
+-----------
 
-Homepage
-![ExpenseEase](./public/expense-ease.jpg)
+**Homepage**
+![homepage](./public/expense-ease.jpg)
 
-AWS S3 Bucket
-![S3](./public/s3-bucket.png)
+**AWS S3 Bucket**
+![s3 bucket](./public/s3-bucket.png)
 
-AWS CloudWatch
-![CloudWatch](./public/cloudwatch.png)
+**AWS CloudWatch**
+![cloudwatch](./public/cloudwatch.png)
 
 Tech Stack
 ----------
@@ -51,20 +51,21 @@ Tech Stack
         
     *   Amazon Textract (text extraction)
         
-    *   Amazon SES (email delivery)
-
+    *   Amazon SES (email delivery to verified admin email)
+        
     *   AWS CloudWatch (logs)
         
 *   **Other:** JavaScript, HTML, CSS
+    
 
 Architecture Diagram
 --------------------
-![diagram](./public/expenseease-diagram.jpg)    
+![diagram](./public/expenseease-diagram.jpg)
 
 Purpose
 -------
 
-This project was developed to bridge the gap between cloud-based automation and user accessibility. While previous versions of similar projects focused on backend processing only, this version provides a fully interactive front-end for everyday users, eliminating the need for technical knowledge and enhancing usability.
+This project was developed to demonstrate cloud-based automation and front-end integration for user-friendly receipt digitisation. While emails currently go only to a verified admin address due to SES sandbox limitations, the system showcases a fully interactive front-end that connects to AWS services for storage, text extraction, and formatted email delivery.
 
 What I Learned
 --------------
@@ -93,18 +94,30 @@ Future Development
     
 *   **Notification system:** Option for real-time updates via email or push notifications.
     
+*   **Production email delivery:** With a verified sending domain and SES production access, enable dynamic email delivery to user-provided email addresses.
+    
+
+Limitations
+-----------
+
+*   **Email delivery restriction:** Currently, emails are sent only to a single verified admin email due to Amazon SES sandbox restrictions. User emails are included in metadata, so the admin receives the receipt and knows which user submitted it.
+    
+*   **No user authentication:** The application does not yet have login or registration functionality, so users cannot track their receipt history.
+    
+*   **Single environment testing:** All email-based functionality has been tested using the admin email. Full dynamic email delivery will require domain verification and SES production access.
+    
 
 How to Run Locally
 ------------------
 
-1.  Clone the repository:git clone
+1.  git clone
     
-2.  Navigate to the project directory:cd receipt-digitiser
+2.  cd receipt-digitiser
     
-3.  Install dependencies:npm install
+3.  npm install
     
 4.  Set up environment variables for AWS credentials and services.
     
-5.  Run the development server:npm run dev
+5.  npm run dev
     
-6.  Open http://localhost:3000 in your browser.
+6.  Open [http://localhost:3000](http://localhost:3000) in your browser.
