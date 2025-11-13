@@ -38,6 +38,9 @@ Screenshots
 **AWS CloudWatch**
 ![cloudwatch](./public/cloudwatch.png)
 
+**Email Response**
+![Email](./public/gmail%20expenses.jpg)
+
 Tech Stack
 ----------
 
