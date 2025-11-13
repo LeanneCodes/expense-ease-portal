@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+ExpenseEase: A Receipt Digitiser Web App
+=========================
 
-## Getting Started
+Overview
+--------
 
-First, run the development server:
+The ExpenseEase is a cloud-based application that allows users to upload receipts and receive a digitised version via email. The application combines a user-friendly front-end interface built with Next.js with powerful AWS services for storage, text extraction, and email delivery. This project streamlines the process of converting physical receipts into digital records, making expense tracking easier and more efficient for users.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Users simply enter their email, upload one or more receipts (via drag-and-drop or file selection), and submit the form. Once submitted, the receipts are processed and sent back as a structured, formatted email.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Features
+--------
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+*   **User-friendly interface:** Built with Next.js for smooth interactions and responsive design.
+    
+*   **Email validation and file upload requirement:** The "Submit" button is enabled only if a valid email and at least one file are provided.
+    
+*   **Flexible file upload:** Supports both drag-and-drop and click-to-upload functionality.
+    
+*   **Cloud storage:** Receipts are uploaded to an AWS S3 bucket for storage and processing.
+    
+*   **Automatic text extraction:** AWS Textract extracts relevant data from uploaded receipts.
+    
+*   **Formatted email delivery:** AWS Lambda formats extracted data and sends it to the user's email via Amazon SES.
+    
+*   **Front-end usability:** Designed for everyday users to digitise receipts without backend knowledge.
+    
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Screenshots
+------------------
 
-## Learn More
+Homepage
+![ExpenseEase](./public/expense-ease.jpg)
 
-To learn more about Next.js, take a look at the following resources:
+AWS S3 Bucket
+![S3](./public/s3-bucket.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+AWS CloudWatch
+![CloudWatch](./public/cloudwatch.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Tech Stack
+----------
 
-## Deploy on Vercel
+*   **Frontend:** Next.js, React, Vercel
+    
+*   **Backend / Cloud Services:**
+    
+    *   AWS S3 (receipt storage)
+        
+    *   AWS Lambda (data formatting)
+        
+    *   Amazon Textract (text extraction)
+        
+    *   Amazon SES (email delivery)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    *   AWS CloudWatch (logs)
+        
+*   **Other:** JavaScript, HTML, CSS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Architecture Diagram
+--------------------
+![diagram](./public/expenseease-diagram.jpg)    
+
+Purpose
+-------
+
+This project was developed to bridge the gap between cloud-based automation and user accessibility. While previous versions of similar projects focused on backend processing only, this version provides a fully interactive front-end for everyday users, eliminating the need for technical knowledge and enhancing usability.
+
+What I Learned
+--------------
+
+*   Integrating AWS services (S3, Textract, Lambda, SES) with a Next.js front-end.
+    
+*   Handling file uploads and email validation in a React-based web app.
+    
+*   Coordinating asynchronous processes between the front end and serverless backend.
+    
+*   Formatting extracted data dynamically before sending via email.
+    
+*   Designing a user-friendly interface for non-technical users.
+    
+
+Future Development
+------------------
+
+*   **User authentication:** Implement login and registration functionality with role-based access (admin vs. regular user).
+    
+*   **Admin dashboard:** Allow administrators to view all uploaded receipts and manage data stored in a DynamoDB database.
+    
+*   **User dashboard:** Enable users to view all past and present uploaded receipts from their account.
+    
+*   **Enhanced receipt processing:** Support additional receipt formats, multi-page receipts, and advanced data validation.
+    
+*   **Notification system:** Option for real-time updates via email or push notifications.
+    
+
+How to Run Locally
+------------------
+
+1.  Clone the repository:git clone
+    
+2.  Navigate to the project directory:cd receipt-digitiser
+    
+3.  Install dependencies:npm install
+    
+4.  Set up environment variables for AWS credentials and services.
+    
+5.  Run the development server:npm run dev
+    
+6.  Open http://localhost:3000 in your browser.
